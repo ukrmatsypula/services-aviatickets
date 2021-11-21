@@ -11,10 +11,19 @@ class Locations {
 
     const [countries, cities] = response;
 
-    this.countries = countries;
+    this.countries = this.serializeCountries(countries);
     this.cities = cities;
     return response;
   }
+
+  serializeCountries(countries) {
+    // { 'Country code': {...} }
+    return countries.reduce((acc, country) => {
+      acc[country.code] = country;
+      return acc;
+    }, {});
+  }
+
   getCitiesByCountryCode(code) {
     return this.cities.filter((city) => city.country_code === code);
   }
