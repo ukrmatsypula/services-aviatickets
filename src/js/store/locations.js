@@ -53,6 +53,14 @@ class Locations {
     }, {});
   }
 
+  getAirlineNameByCode(code) {
+    return this.airlines[code] ? this.airlines[code].name : "";
+  }
+
+  getAirlineLogoByCode(code) {
+    return this.airlines[code] ? this.airlines[code].logo : "";
+  }
+
   getCityCodeByKey(key) {
     return this.cities[key].code;
   }
