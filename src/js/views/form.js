@@ -20,6 +20,22 @@ class FormUI {
     return this._form;
   }
 
+  get originValue() {
+    return this.origin.value;
+  }
+
+  get destinationValue() {
+    return this.destination.value;
+  }
+
+  get departDateValue() {
+    return this.departDatePicker.toString();
+  }
+
+  get returnDateValue() {
+    return this.returnDatePicker.toString();
+  }
+
   setAutocompleteData(data) {
     this.originAutocomplete.updateData(data);
     this.destinationAutocomplete.updateData(data);
