@@ -34,6 +34,17 @@ class Api {
       return Promise.reject(err);
     }
   }
+  async airlines(params) {
+    try {
+      const response = await axios.get(`${this.url}/airlines`, {
+        params,
+      });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return Promise.reject(err);
+    }
+  }
 }
 
 const api = new Api(config);
