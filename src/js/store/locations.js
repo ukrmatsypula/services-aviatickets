@@ -1,12 +1,14 @@
 import api from "../services/apiService";
+import { formatDate } from "../helpers/date";
 
 class Locations {
-  constructor(api) {
+  constructor(api, helpers) {
     this.api = api;
     this.countries = null;
     this.cities = null;
     this.shortCitiesList = null;
     this.airlines = null;
+    this.formatDate = helpers.formatDate;
   }
   async init() {
     const response = await Promise.all([
@@ -103,11 +105,13 @@ class Locations {
         destination_name: this.getCityNameByCode(ticket.destination),
         airline_logo: this.getAirlineLogoByCode(ticket.airline),
         airline_name: this.getAirlineNameByCode(ticket.airline),
+        departure_at: this.formatDate(ticket.departure_at, "dd MMM yyyy hh:mm"),
+        return_at: this.formatDate(ticket.return_at, "dd MMM yyyy hh:mm"),
       };
     });
   }
 }
 
-const locations = new Locations(api);
+const locations = new Locations(api, { formatDate });
 
 export default locations;
